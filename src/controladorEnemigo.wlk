@@ -27,6 +27,7 @@ object controladorEnemigo{
     }
     
     method resetear(){
+        enemigos.forEach({enemigo => game.removeVisual(enemigo)})
         enemigos.clear()
     }
 }
