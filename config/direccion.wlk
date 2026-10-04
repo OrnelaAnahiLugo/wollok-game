@@ -1,25 +1,23 @@
-object arriba {
-  method nuevaDireccion() = generadorDeDireccion.direccionRandom()
-  
-  method moverse(personaje) = personaje.moveUp()
+class Direccion{
+    method nuevaDireccion() = generadorDeDireccion.direccionRandom()
+    method moverse(personaje)
 }
 
-object derecha {
-  method nuevaDireccion() = generadorDeDireccion.direccionRandom()
+object arriba inherits Direccion{
   
-  method moverse(personaje) = personaje.moveRight()
+  override method moverse(personaje) = personaje.moverseArriba()
 }
 
-object abajo {
-  method nuevaDireccion() = generadorDeDireccion.direccionRandom()
-  
-  method moverse(personaje) = personaje.moveDown()
+object derecha inherits Direccion {  
+  override method moverse(personaje) = personaje.moverseDerecha()
 }
 
-object izquierda {
-  method nuevaDireccion() = generadorDeDireccion.direccionRandom()
-  
-  method moverse(personaje) = personaje.moveLeft()
+object abajo inherits Direccion {  
+  override method moverse(personaje) = personaje.moverseAbajo()
+}
+
+object izquierda inherits Direccion {  
+  override method moverse(personaje) = personaje.moverseIzquierda()
 }
 
 object generadorDeDireccion{

@@ -22,25 +22,25 @@ class Personaje {
 
   method noPudoMoverse() {}
 
-  method moveUp() {
+  method moverseArriba() {
     if (position.y() < game.height() - 1) {
       self.moverseA(position.up(1))
     }
   }
 
-  method moveDown() {
+  method moverseAbajo() {
     if (position.y() > 0) {
       self.moverseA(position.down(1))
     }
   }
 
-  method moveRight() {
+  method moverseDerecha() {
     if (position.x() < game.width() - 1) {
       self.moverseA(position.right(1))
     }
   }
 
-  method moveLeft() {
+  method moverseIzquierda() {
     if (position.x() > 0) {
       self.moverseA(position.left(1))
     }
