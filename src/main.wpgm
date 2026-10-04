@@ -1,0 +1,39 @@
+import wollok.game.*
+
+import src.vicky.*
+
+import config.paredesHandler.*
+
+import config.colisiones.*
+import src.controladorEnemigo.*
+
+program PacvickyGame {
+	game.title("Escapando de scream")
+
+	game.cellSize(32)
+
+	game.height(25)
+	game.width(25)
+
+	game.boardGround("mapa_1.png")
+
+	paredesHandler.generarParedes()
+
+	game.addVisual(vicky)
+
+	keyboard.up().whilePressedDo({ vicky.moveUp() }, 200)
+	keyboard.down().whilePressedDo({ vicky.moveDown() }, 200)
+	keyboard.right().whilePressedDo({ vicky.moveRight() }, 200)
+	keyboard.left().whilePressedDo({ vicky.moveLeft() }, 200)
+
+	colisiones.configurar()
+	
+
+	const tick = game.tick(100, { controladorEnemigo.crearEnemigo() }, false)
+	tick.start()
+
+	controladorEnemigo.manejarEnemigos()
+
+	game.start()
+
+}
