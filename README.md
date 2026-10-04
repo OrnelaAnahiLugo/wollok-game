@@ -3,6 +3,10 @@
 
 Juego inspirado en Pac-Man hecho con Wollok Game. La protagonista es Vicky, que debe moverse por un laberinto de escape room mientras evita a los Scream.
 
+## Vista previa
+
+![Gameplay de Escapando de Scream](<Captura de pantalla 2026-10-04 a la(s) 7.14.15 p.gif>)
+
 ## Historia
 
 Vicky es una chica apasionada por los escape rooms. Un dia decide ir a uno con tematica de Scream, pensando que iba a ser una experiencia divertida y desafiante.
