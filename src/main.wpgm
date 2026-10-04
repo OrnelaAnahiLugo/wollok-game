@@ -7,6 +7,7 @@ import config.paredesHandler.*
 import config.colisiones.*
 import src.controladorEnemigo.*
 import src.controladorPellets.*
+import src.controladorObjetos.*
 
 program PacvickyGame {
 	game.title("Escapando de scream")
@@ -32,6 +33,9 @@ program PacvickyGame {
 
 	const tick = game.tick(100, { controladorEnemigo.crearEnemigo() }, false)
 	tick.start()
+
+	const tickObjetos = game.tick(15000, { controladorObjetos.crearObjetoRandom() }, true)
+	tickObjetos.start()
 
 	controladorEnemigo.manejarEnemigos()
 

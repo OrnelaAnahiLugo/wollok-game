@@ -50,4 +50,6 @@ class Personaje {
   method chocarCon(personaje) {}
 
   method comerPellet(pellet) {}
+
+  method encontrarObjetoExperiencia(objeto) {}
 }

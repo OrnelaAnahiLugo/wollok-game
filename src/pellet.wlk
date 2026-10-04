@@ -12,6 +12,6 @@ class Pellet {
 
     method serComidoPor(vicky) {
         controladorPellets.comer(self)
-        vicky.sumarExperiencia(1)
+        vicky.sumarExperienciaPorPellet()
     }
 }
