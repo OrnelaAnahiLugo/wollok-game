@@ -15,7 +15,6 @@ object controladorEnemigo{
             )
             enemigos.add(nuevoEnemigo)
             game.addVisual(nuevoEnemigo)
-            colisiones.configurarColision(nuevoEnemigo)
         }
     }
 

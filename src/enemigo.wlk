@@ -19,14 +19,14 @@ class Enemigo inherits Personaje(
         direccion = direccion.nuevaDireccion()
     }
 
-    override method chocarConPared() {
-        self.retroceder()
+    override method noPudoMoverse() {
+        self.cambiarDireccion()
     }
 
-    method moverse(){
+    method moverse() {
         direccion.moverse(self)
     }
-
+    
     override method chocarCon(personaje){
         personaje.chocarConEnemigo()
     }

@@ -98,6 +98,11 @@ object paredesHandler {
   method configurarPared(pared) {
     game.addVisual(pared)
   }
+
+  method hayParedEn(posicion) =
+    posicionesParedes.any({posicionPared =>
+      posicionPared.x() == posicion.x() && posicionPared.y() == posicion.y()
+    })
   
   method cargarPosicionDeParedesVerticales(inicio, fin, posicionEnX) {
     (inicio .. fin).forEach(
