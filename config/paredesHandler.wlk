@@ -1,5 +1,6 @@
 import wollok.game.*
 import src.pared.*
+import config.colisiones.*
 
 object paredesHandler {
   var altura = 0
@@ -88,15 +89,14 @@ object paredesHandler {
     tramosParedes.forEach({ tramo => tramo.cargarEn(self) })
     
     posicionesParedes.forEach(
-      { posicionPared => self.dibujarPared(
+      { posicionPared => self.configurarPared(
           new Pared(position = posicionPared)
         ) }
     )
   }
   
-  method dibujarPared(pared) {
+  method configurarPared(pared) {
     game.addVisual(pared)
-    game.onCollideDo(pared, {personaje => pared.chocarCon(personaje)})
   }
   
   method cargarPosicionDeParedesVerticales(inicio, fin, posicionEnX) {

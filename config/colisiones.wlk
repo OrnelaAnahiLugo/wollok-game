@@ -3,10 +3,8 @@ import src.vicky.*
 
 object colisiones{
 
-    method configurar(){
-
-        game.onCollideDo(vicky, {elemento => elemento.chocarCon(vicky)})
-        
+    method configurarColision(personaje) {
+        game.onCollideDo(personaje, {elemento => elemento.chocarCon(personaje)})
     }
 
 }

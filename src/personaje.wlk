@@ -1,16 +1,10 @@
 import wollok.game.*
 
 class Personaje {
-  const posicionInicial
   var posicionAnterior
   var position
   
   method position() = position
-  
-  method resetearse() {
-    position = posicionInicial
-    posicionAnterior = posicionInicial
-  }
   
   method retroceder() {
     position = posicionAnterior
@@ -44,11 +38,6 @@ class Personaje {
     }
   }
 
-  method configurarColisiones() {
-    game.onCollideDo(self, {elemento => elemento.chocarCon(self)})
-  }
 
-  method chocarCon(personaje) {
-    personaje.retroceder()
-  }
+  method frenarA(personaje) {}
 }

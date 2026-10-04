@@ -3,7 +3,6 @@ import src.personaje.Personaje
 import config.direccion.*
 
 class Enemigo inherits Personaje(
-    posicionInicial = game.at(12,15),
     posicionAnterior = game.at(12,15),
     position = game.at(12,15)
 ){
@@ -24,8 +23,9 @@ class Enemigo inherits Personaje(
         direccion.moverse(self)
     }
 
-    override method chocarCon(personaje) {
-        controladorEnemigo.resetearJuego()
+    method chocarCon(personaje){
+        personaje.chocarConEnemigo()
     }
 
+    method chocarConEnemigo(){}
 }

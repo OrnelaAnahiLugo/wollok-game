@@ -1,7 +1,9 @@
+import src.reseteador.*
 import wollok.game.*
 import src.enemigo.Enemigo
 import config.direccion.*
 import src.vicky.*
+import config.colisiones.*
 
 object controladorEnemigo{
     const enemigos = []
@@ -12,6 +14,7 @@ object controladorEnemigo{
                 direccion = generadorDeDireccion.direccionRandom()
             )
             enemigos.add(nuevoEnemigo)
+            colisiones.configurarColision(nuevoEnemigo)
             game.addVisual(nuevoEnemigo)
         }
     }
@@ -22,13 +25,8 @@ object controladorEnemigo{
         const tick = game.tick(200, { enemigos.forEach({enemigo => enemigo.moverse()}) }, true)
         tick.start()
     }
-
-    method resetearJuego() {
-        vicky.resetearse()
-        enemigos.forEach({enemigo =>
-            enemigo.resetearse()
-            enemigo.cambiarDireccion()
-        })
-    }
     
+    method resetear(){
+        enemigos.clear()
+    }
 }
