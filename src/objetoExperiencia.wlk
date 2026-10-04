@@ -2,47 +2,42 @@ import wollok.game.*
 import src.controladorObjetos.*
 import src.vicky.*
 
-class Llave {
-    var property position
-
-    method image() = "Llave.png"
-
-    method chocarCon(personaje) {
-        personaje.encontrarObjetoExperiencia(self)
-    }
-
+class ObjetoExperiencia {
+  var property position
+  
+  method chocarCon(personaje) {
+    personaje.encontrarObjetoExperiencia(self)
+  }
     method serTomado() {
-        controladorObjetos.quitar(self)
-        vicky.multiplicarExperienciaPor(3)
-    }
+    controladorObjetos.quitar(self)
+  }
 }
 
-class CandadoConClave {
-    var property position
-
-    method image() = "candadoConClave.png"
-
-    method chocarCon(personaje) {
-        personaje.encontrarObjetoExperiencia(self)
-    }
-
-    method serTomado() {
-        controladorObjetos.quitar(self)
-        vicky.sumarExperiencia(500)
-    }
+class Llave inherits ObjetoExperiencia {
+  method image() = "Llave.png"
+  
+  override method serTomado() {
+    super()
+    vicky.multiplicarExperienciaPor(3)
+  }
 }
 
-class CandadoComun {
-    var property position
+class CandadoConClave inherits ObjetoExperiencia{
+  
+  method image() = "candadoConClave.png"
+  
+  override method serTomado() {
+    super()
+    vicky.sumarExperiencia(500)
+  }
+}
 
-    method image() = "candadoComun.png"
-
-    method chocarCon(personaje) {
-        personaje.encontrarObjetoExperiencia(self)
-    }
-
-    method serTomado() {
-        controladorObjetos.quitar(self)
-        vicky.volversePro()
-    }
+class CandadoComun  inherits ObjetoExperiencia{
+  
+  method image() = "candadoComun.png"
+  
+  override method serTomado() {
+    super()
+    vicky.volversePro()
+  }
 }
