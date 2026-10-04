@@ -19,6 +19,10 @@ class Enemigo inherits Personaje(
         direccion = direccion.nuevaDireccion()
     }
 
+    override method chocarConPared() {
+        self.retroceder()
+    }
+
     method moverse(){
         direccion.moverse(self)
     }

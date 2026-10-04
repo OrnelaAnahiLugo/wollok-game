@@ -12,6 +12,11 @@ class Personaje {
     position = posicionAnterior
   }
 
+  method chocarConPared() {
+    self.bloquearDireccionActual()
+    self.retroceder()
+  }
+
   method bloquearDireccionActual() {
     direccionBloqueada = direccionActual
   }

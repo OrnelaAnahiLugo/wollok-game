@@ -6,8 +6,7 @@ class Pared {
     method image() = "item_candado_32x32.png"
 
     method chocarCon(personaje){
-        personaje.bloquearDireccionActual()
-        personaje.retroceder()
+        personaje.chocarConPared()
     }
     method resetearse(){}
 
