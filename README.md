@@ -5,7 +5,7 @@ Juego inspirado en Pac-Man hecho con Wollok Game. La protagonista es Vicky, que 
 
 ## Vista previa
 
-![Gameplay de Escapando de Scream](<Captura de pantalla 2026-10-04 a la(s) 7.14.15 p.gif>)
+![Gameplay de Escapando de Scream](<assets/Captura de pantalla 2026-10-04 a la(s) 7.14.15 p.gif>)
 
 ## Historia
 
