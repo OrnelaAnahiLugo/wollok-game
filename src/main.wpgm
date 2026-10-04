@@ -21,7 +21,7 @@ program PacvickyGame {
 
 	game.addVisual(vicky)
 	colisiones.configurarColision(vicky)
-	
+
 	keyboard.up().whilePressedDo({ vicky.moveUp() }, 200)
 	keyboard.down().whilePressedDo({ vicky.moveDown() }, 200)
 	keyboard.right().whilePressedDo({ vicky.moveRight() }, 200)

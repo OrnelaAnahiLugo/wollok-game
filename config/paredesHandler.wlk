@@ -97,21 +97,18 @@ object paredesHandler {
   
   method configurarPared(pared) {
     game.addVisual(pared)
+    game.onCollideDo(pared, {personaje => pared.chocarCon(personaje)})
   }
   
   method cargarPosicionDeParedesVerticales(inicio, fin, posicionEnX) {
     (inicio .. fin).forEach(
-      { posicionEnY => posicionesParedes.add(
-          new Position(x = posicionEnX, y = posicionEnY)
-        ) }
+      { posicionEnY => posicionesParedes.add(game.at(posicionEnX, posicionEnY)) }
     )
   }
   
   method cargarPosicionDeParedesHorizontales(inicio, fin, posicionEnY) {
     (inicio .. fin).forEach(
-      { posicionEnX => posicionesParedes.add(
-          new Position(x = posicionEnX, y = posicionEnY)
-        ) }
+      { posicionEnX => posicionesParedes.add(game.at(posicionEnX, posicionEnY)) }
     )
   }
 }

@@ -14,8 +14,8 @@ object controladorEnemigo{
                 direccion = generadorDeDireccion.direccionRandom()
             )
             enemigos.add(nuevoEnemigo)
-            colisiones.configurarColision(nuevoEnemigo)
             game.addVisual(nuevoEnemigo)
+            colisiones.configurarColision(nuevoEnemigo)
         }
     }
 

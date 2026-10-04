@@ -23,7 +23,7 @@ class Enemigo inherits Personaje(
         direccion.moverse(self)
     }
 
-    method chocarCon(personaje){
+    override method chocarCon(personaje){
         personaje.chocarConEnemigo()
     }
 
