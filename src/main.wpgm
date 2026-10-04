@@ -6,6 +6,7 @@ import config.paredesHandler.*
 
 import config.colisiones.*
 import src.controladorEnemigo.*
+import src.controladorPellets.*
 
 program PacvickyGame {
 	game.title("Escapando de scream")
@@ -18,6 +19,7 @@ program PacvickyGame {
 	game.boardGround("mapa_1.png")
 
 	paredesHandler.generarParedes()
+	controladorPellets.generarPellets()
 
 	game.addVisual(vicky)
 	colisiones.configurarColision(vicky)
