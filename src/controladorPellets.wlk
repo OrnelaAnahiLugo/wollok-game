@@ -23,6 +23,12 @@ object controladorPellets {
         game.addVisual(pellet)
     }
 
+    method resetear() {
+        pellets.forEach({ pellet => game.removeVisual(pellet) })
+        pellets.clear()
+        self.generarPellets()
+    }
+
     method comer(pellet) {
         game.removeVisual(pellet)
         pellets.remove(pellet)

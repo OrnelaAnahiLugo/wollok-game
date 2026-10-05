@@ -24,16 +24,17 @@ program PacvickyGame {
 	controladorPellets.generarPellets()
 
 	game.addVisual(vicky)
-	colisiones.configurarColision(vicky)
+	colisiones.revisarColisiones(vicky)
 
-	teclado.configurar()
+	const tickVicky = game.tick(150, { vicky.avanzar() }, false)
+	tickVicky.start()
 	
+	teclado.configurar()
 
 	const tick = game.tick(100, { controladorEnemigo.crearEnemigo() }, false)
 	tick.start()
 
-	const tickObjetos = game.tick(15000, { controladorObjetos.crearObjetoRandom() }, true)
-	tickObjetos.start()
+	controladorObjetos.iniciar()
 
 	controladorEnemigo.manejarEnemigos()
 

@@ -1,9 +1,9 @@
 import wollok.game.*
 import personaje.*
 import src.reseteador.*
+import config.direccion.*
 
 object vicky inherits Personaje (
-  posicionAnterior = game.at(12, 11),
   position = game.at(12, 11)
 ) {
   var experiencia = 0
@@ -41,11 +41,20 @@ object vicky inherits Personaje (
     objeto.serTomado()
   }
   
+  override method chocarCon(personaje) {
+    personaje.chocarCon(self)
+  }
+
   method chocarConEnemigo() {
     reseteador.resetearJuego()
   }
   
   method resetearse() {
     position = game.at(12, 11)
+    direccionActual = quieto
+    direccionDeseada = quieto
+    experiencia = 0
+    experienciaPorPellet = 1
+    esPro = false
   }
 }
