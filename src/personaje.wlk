@@ -1,11 +1,12 @@
 import wollok.game.*
 import config.paredesHandler.*
 import config.colisiones.*
+import config.direccion.*
 
 class Personaje {
   var position
-  var direccionActual = null
-  var direccionDeseada = null
+  var direccionActual = quieto
+  var direccionDeseada = quieto
 
   method position() = position
 
@@ -15,13 +16,17 @@ class Personaje {
 
   method avanzar() {
     self.elegirDireccion()
-    if (direccionDeseada != null && self.puedeIrHacia(direccionDeseada)) {
+    if (self.puedeIrHacia(direccionDeseada)) {
       direccionActual = direccionDeseada
     }
-    if (direccionActual != null && self.puedeIrHacia(direccionActual)) {
-      position = direccionActual.siguiente(position)
-      self.revisarCelda()
+    if (self.puedeIrHacia(direccionActual)) {
+      direccionActual.llevar(self)
     }
+  }
+
+  method irA(nuevaPosicion) {
+    position = nuevaPosicion
+    self.revisarCelda()
   }
 
   method elegirDireccion() {}
@@ -33,9 +38,10 @@ class Personaje {
   method puedeIrHacia(direccion) = self.puedeIrA(direccion.siguiente(position))
 
   method puedeIrA(nuevaPosicion) =
-    nuevaPosicion.x().between(0, game.width() - 1) &&
-    nuevaPosicion.y().between(0, game.height() - 1) &&
-    !paredesHandler.hayParedEn(nuevaPosicion)
+    self.estaDentroDelTablero(nuevaPosicion) && !paredesHandler.hayParedEn(nuevaPosicion)
+
+  method estaDentroDelTablero(posicion) =
+    posicion.x().between(0, game.width() - 1) && posicion.y().between(0, game.height() - 1)
 
   method chocarCon(personaje) {}
 

@@ -1,5 +1,15 @@
 class Direccion{
     method siguiente(posicion)
+
+    method llevar(personaje) {
+        personaje.irA(self.siguiente(personaje.position()))
+    }
+}
+
+object quieto {
+  method siguiente(posicion) = posicion
+
+  method llevar(personaje) {}
 }
 
 object arriba inherits Direccion{

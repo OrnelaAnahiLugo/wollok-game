@@ -7,14 +7,19 @@ class Enemigo inherits Personaje(
 ){
     method image() = "scream.png"
 
+    override method initialize() {
+        super()
+        self.quererMoverseHacia(self.direccionLibreAlAzar())
+    }
+
     override method elegirDireccion() {
-        if (direccionActual == null || !self.puedeIrHacia(direccionActual)) {
-            const libres = generadorDeDireccion.direcciones().filter({ direccion => self.puedeIrHacia(direccion) })
-            if (!libres.isEmpty()) {
-                self.quererMoverseHacia(libres.anyOne())
-            }
+        if (!self.puedeIrHacia(direccionActual)) {
+            self.quererMoverseHacia(self.direccionLibreAlAzar())
         }
     }
+
+    method direccionLibreAlAzar() =
+        generadorDeDireccion.direcciones().filter({ direccion => self.puedeIrHacia(direccion) }).anyOne()
 
     override method revisarCelda() {
         if (vicky.position() == position) {
