@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import src.reseteador.*
+import config.colisiones.*
 
 object vicky inherits Personaje (
   posicionAnterior = game.at(12, 11),
@@ -9,6 +10,8 @@ object vicky inherits Personaje (
   var experiencia = 0
   var experienciaPorPellet = 1
   var esPro = false
+  var direccionActual = null
+  var direccionDeseada = null
 
   method image() = "vicky.png"
 
@@ -33,6 +36,20 @@ object vicky inherits Personaje (
     experienciaPorPellet = 2
   }
 
+  method quererMoverseHacia(direccion) {
+    direccionDeseada = direccion
+  }
+
+  method avanzar() {
+    if (direccionDeseada != null && self.puedeIrA(direccionDeseada.siguiente(position))) {
+      direccionActual = direccionDeseada
+    }
+    if (direccionActual != null) {
+      direccionActual.moverse(self)
+      colisiones.revisarColisiones(self)
+    }
+  }
+
   override method comerPellet(pellet) {
     pellet.serComidoPor(self)
   }
@@ -47,5 +64,7 @@ object vicky inherits Personaje (
   
   method resetearse() {
     position = game.at(12, 11)
+    direccionActual = null
+    direccionDeseada = null
   }
 }

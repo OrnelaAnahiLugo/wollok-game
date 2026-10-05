@@ -21,8 +21,15 @@ object controladorEnemigo{
 
 
     method manejarEnemigos(){
-        const tick = game.tick(200, { enemigos.forEach({enemigo => enemigo.moverse()}) }, true)
+        const tick = game.tick(200, { self.moverEnemigos() }, true)
         tick.start()
+    }
+
+    method moverEnemigos(){
+        enemigos.forEach({enemigo => enemigo.moverse()})
+        if (enemigos.any({enemigo => enemigo.position() == vicky.position()})) {
+            vicky.chocarConEnemigo()
+        }
     }
     
     method resetear(){

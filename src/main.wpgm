@@ -5,6 +5,7 @@ import src.vicky.*
 import config.paredesHandler.*
 
 import config.colisiones.*
+import config.direccion.*
 import src.controladorEnemigo.*
 import src.controladorPellets.*
 import src.controladorObjetos.*
@@ -23,13 +24,16 @@ program PacvickyGame {
 	controladorPellets.generarPellets()
 
 	game.addVisual(vicky)
-	colisiones.configurarColision(vicky)
+	colisiones.revisarColisiones(vicky)
 
-	keyboard.up().whilePressedDo({ vicky.moverseArriba() }, 200)
-	keyboard.down().whilePressedDo({ vicky.moverseAbajo() }, 200)
-	keyboard.right().whilePressedDo({ vicky.moverseDerecha() }, 200)
-	keyboard.left().whilePressedDo({ vicky.moverseIzquierda() }, 200)
-	
+	// TODO: Mover a un controlador de movimiento
+	keyboard.up().onPressDo({ vicky.quererMoverseHacia(arriba) })
+	keyboard.down().onPressDo({ vicky.quererMoverseHacia(abajo) })
+	keyboard.right().onPressDo({ vicky.quererMoverseHacia(derecha) })
+	keyboard.left().onPressDo({ vicky.quererMoverseHacia(izquierda) })
+
+	const tickVicky = game.tick(150, { vicky.avanzar() }, false)
+	tickVicky.start()
 
 	const tick = game.tick(100, { controladorEnemigo.crearEnemigo() }, false)
 	tick.start()

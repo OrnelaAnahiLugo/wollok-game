@@ -1,11 +1,10 @@
 import wollok.game.*
-import src.pared.*
-import config.colisiones.*
 
 object paredesHandler {
   var altura = 0
   var ancho = 0
   const posicionesParedes = []
+  var grilla = []
   const tramosParedes = [
     new TramoPared(inicio = 0, fin = 24, posicion = 0, tipo = "horizontal"),
     new TramoPared(inicio = 0, fin = 24, posicion = 24, tipo = "horizontal"),
@@ -88,21 +87,13 @@ object paredesHandler {
     
     tramosParedes.forEach({ tramo => tramo.cargarEn(self) })
     
-    posicionesParedes.forEach(
-      { posicionPared => self.configurarPared(
-          new Pared(position = posicionPared)
-        ) }
-    )
-  }
-  
-  method configurarPared(pared) {
-    game.addVisual(pared)
+    grilla = (0 .. altura).map({ y =>
+      const xsConPared = posicionesParedes.filter({ posicion => posicion.y() == y }).map({ posicion => posicion.x() })
+        .map({ x => xsConPared.contains(x) })
+    })
   }
 
-  method hayParedEn(posicion) =
-    posicionesParedes.any({posicionPared =>
-      posicionPared.x() == posicion.x() && posicionPared.y() == posicion.y()
-    })
+  method hayParedEn(posicion) = grilla.get(posicion.y()).get(posicion.x())
   
   method cargarPosicionDeParedesVerticales(inicio, fin, posicionEnX) {
     (inicio .. fin).forEach(

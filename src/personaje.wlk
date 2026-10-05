@@ -22,6 +22,11 @@ class Personaje {
 
   method noPudoMoverse() {}
 
+  method puedeIrA(nuevaPosicion) =
+    nuevaPosicion.x().between(0, game.width() - 1) &&
+    nuevaPosicion.y().between(0, game.height() - 1) &&
+    !paredesHandler.hayParedEn(nuevaPosicion)
+
   method moverseArriba() {
     if (position.y() < game.height() - 1) {
       self.moverseA(position.up(1))
