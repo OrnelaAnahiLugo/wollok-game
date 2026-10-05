@@ -5,6 +5,7 @@ import src.vicky.*
 import config.paredesHandler.*
 
 import config.colisiones.*
+import config.teclado.*
 import src.controladorEnemigo.*
 import src.controladorPellets.*
 import src.controladorObjetos.*
@@ -25,10 +26,7 @@ program PacvickyGame {
 	game.addVisual(vicky)
 	colisiones.configurarColision(vicky)
 
-	keyboard.up().whilePressedDo({ vicky.moverseArriba() }, 200)
-	keyboard.down().whilePressedDo({ vicky.moverseAbajo() }, 200)
-	keyboard.right().whilePressedDo({ vicky.moverseDerecha() }, 200)
-	keyboard.left().whilePressedDo({ vicky.moverseIzquierda() }, 200)
+	teclado.configurar()
 	
 
 	const tick = game.tick(100, { controladorEnemigo.crearEnemigo() }, false)
