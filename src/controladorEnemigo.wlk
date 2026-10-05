@@ -1,20 +1,15 @@
-import src.reseteador.*
 import wollok.game.*
 import src.enemigo.Enemigo
-import config.direccion.*
-import src.vicky.*
-import config.colisiones.*
 
 object controladorEnemigo{
     const enemigos = []
 
     method crearEnemigo(){
         if(enemigos.size() < 4){
-            const nuevoEnemigo = new Enemigo(
-                direccion = generadorDeDireccion.direccionRandom()
-            )
+            const nuevoEnemigo = new Enemigo()
             enemigos.add(nuevoEnemigo)
             game.addVisual(nuevoEnemigo)
+            nuevoEnemigo.revisarCelda()
         }
     }
 
@@ -26,10 +21,7 @@ object controladorEnemigo{
     }
 
     method moverEnemigos(){
-        enemigos.forEach({enemigo => enemigo.moverse()})
-        if (enemigos.any({enemigo => enemigo.position() == vicky.position()})) {
-            vicky.chocarConEnemigo()
-        }
+        enemigos.forEach({enemigo => enemigo.avanzar()})
     }
     
     method resetear(){

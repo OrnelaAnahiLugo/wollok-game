@@ -1,56 +1,41 @@
 import wollok.game.*
 import config.paredesHandler.*
+import config.colisiones.*
 
 class Personaje {
-  var posicionAnterior
   var position
-  
+  var direccionActual = null
+  var direccionDeseada = null
+
   method position() = position
-  
-  method retroceder() {
-    position = posicionAnterior
+
+  method quererMoverseHacia(direccion) {
+    direccionDeseada = direccion
   }
 
-  method moverseA(nuevaPosicion) {
-    if (paredesHandler.hayParedEn(nuevaPosicion)) {
-      self.noPudoMoverse()
-    } else {
-      posicionAnterior = position
-      position = nuevaPosicion
+  method avanzar() {
+    self.elegirDireccion()
+    if (direccionDeseada != null && self.puedeIrHacia(direccionDeseada)) {
+      direccionActual = direccionDeseada
+    }
+    if (direccionActual != null && self.puedeIrHacia(direccionActual)) {
+      position = direccionActual.siguiente(position)
+      self.revisarCelda()
     }
   }
 
-  method noPudoMoverse() {}
+  method elegirDireccion() {}
+
+  method revisarCelda() {
+    colisiones.revisarColisiones(self)
+  }
+
+  method puedeIrHacia(direccion) = self.puedeIrA(direccion.siguiente(position))
 
   method puedeIrA(nuevaPosicion) =
     nuevaPosicion.x().between(0, game.width() - 1) &&
     nuevaPosicion.y().between(0, game.height() - 1) &&
     !paredesHandler.hayParedEn(nuevaPosicion)
-
-  method moverseArriba() {
-    if (position.y() < game.height() - 1) {
-      self.moverseA(position.up(1))
-    }
-  }
-
-  method moverseAbajo() {
-    if (position.y() > 0) {
-      self.moverseA(position.down(1))
-    }
-  }
-
-  method moverseDerecha() {
-    if (position.x() < game.width() - 1) {
-      self.moverseA(position.right(1))
-    }
-  }
-
-  method moverseIzquierda() {
-    if (position.x() > 0) {
-      self.moverseA(position.left(1))
-    }
-  }
-
 
   method chocarCon(personaje) {}
 

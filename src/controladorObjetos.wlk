@@ -4,11 +4,22 @@ import src.objetoExperiencia.*
 
 object controladorObjetos {
     const objetos = []
+    const tickObjetos = game.tick(15000, { self.crearObjetoRandom() }, true)
     const generadores = [
         generadorLlave,
         generadorCandadoConClave,
         generadorCandadoComun
     ]
+
+    method iniciar() {
+        tickObjetos.start()
+    }
+
+    method resetear() {
+        objetos.forEach({ objeto => game.removeVisual(objeto) })
+        objetos.clear()
+        tickObjetos.reset()
+    }
 
     method crearObjetoRandom() {
         const posicion = self.posicionRandomLibre()

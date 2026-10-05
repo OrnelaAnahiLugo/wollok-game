@@ -87,10 +87,12 @@ object paredesHandler {
     
     tramosParedes.forEach({ tramo => tramo.cargarEn(self) })
     
-    grilla = (0 .. altura).map({ y =>
-      const xsConPared = posicionesParedes.filter({ posicion => posicion.y() == y }).map({ posicion => posicion.x() })
-        .map({ x => xsConPared.contains(x) })
-    })
+    grilla = (0 .. altura).map({ y => self.filaDeGrilla(y) })
+  }
+
+  method filaDeGrilla(y) {
+    const xsConPared = posicionesParedes.filter({ posicion => posicion.y() == y }).map({ posicion => posicion.x() })
+    return (0 .. ancho).map({ x => xsConPared.contains(x) })
   }
 
   method hayParedEn(posicion) = grilla.get(posicion.y()).get(posicion.x())
